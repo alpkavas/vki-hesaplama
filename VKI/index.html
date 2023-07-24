@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 Fontawesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <header>
+    <nav class="p-3 mb-2 bg-primary text-white text-center fs-5 ">
+        Vücut Kitle İndeksi Hesaplama
+        <span><i class="fa-solid fa-calculator"></i></span>
+    </nav>
+  </header>
+  <main class="grid">
+      
+    <div class="container d-flex justify-content-between ">
+        <div class="mb-3" style="width: 300px;">
+            <label for="" class="form-label">Boy :</label>
+            <small id="helpId" class="form-text text-muted">Örnek: 188 cm</small>
+            <input id="height_value" type="number"
+            class="form-control" placeholder="Boyunuzu Giriniz">
+            <small id="height_vali" class="d-none" style="color: red;">Lütfen uygun bir değer giriniz.</small>
+            <br>
+            <label for="" class="form-label">Kilo :</label>
+            <small id="helpId" class="form-text text-muted">Örnek: 88 kg</small>
+            <input id="weight_value" type="number"
+            class="form-control"   placeholder="Kilonuzu Giriniz">
+            <small id="weight_vali" class="d-none" style="color: red;">Lütfen uygun bir değer giriniz.</small>
+        </div>
+        <div class="mb-3 ms-4 " style="width: 300px;">
+            <label  class="form-label">Yaş :</label>
+            <small id="helpId" class="form-text text-muted">Örnek: Alp</small>
+            <input id="age_value" type="text"
+            class="form-control"  placeholder="Adınızı Giriniz">
+            <small id="age_vali" class="d-none" style="color: red;">Lütfen uygun bir değer giriniz.</small>
+            <div class="mt-5 m-1">
+                <button id="calculateBtn" class="btn btn-primary mt-1 p-2">Hesapla <i class="fa-solid fa-scale-balanced fa-xs"></i></button>
+                <button onclick="saveBtn()" class="btn btn-success mt-1 ms-3 p-2">Kaydet <i class="fa-regular fa-bookmark fa-xs"></i></button>
+                <button id="allDelete" class="btn btn-danger mt-1 ms-3 p-2"><i class="fa-solid fa-trash-can fa-lg"></i></button>
+            </div>
+        </div>
+        <div id="boxAlert" class="col-6 row-gap-3">
+            <div id="normal_weight" class="alert alert-success d-none" role="alert">
+                <h4 class="alert-heading">İdeal Kilonuzdasınız!</h4>
+                <p>İdeak kilonuzu korumak, sağlığınızı korumanız ve uzun vadeli iyi bir yaşam kalitesi sağlamanız için önemlidir. Sağlıklı kilo aralığında kalmak, obezite ve çeşitli sağlık sorunları riskini azaltmaya yardımcı olabilir.</p>
+                <hr>
+                <p class="mb-0">Bir profesyonale danışmak ve randevu almak için lütfen <a href="https://mhrs.gov.tr/vatandas/#/">tıklayınız.</a></p>
+            </div>
+            <div id="over_weight" class="alert alert-info d-none" role="alert">
+                <h4 class="alert-heading">İdeal Kilonuzun Üstündesiniz!</h4>
+                <p>Normal kilonuzun üzerinde olmanız, gelecekte obezite ve çeşitli sağlık sorunları riskini artırabilir. Sağlığınızı korumak ve uzun vadeli iyi bir yaşam kalitesi sağlamak için lütfen kilonuza dikkat edin.</p>
+                <hr>
+                <p class="mb-0">Bir profesyonale danışmak ve randevu almak için lütfen <a href="https://mhrs.gov.tr/vatandas/#/">tıklayınız.</a></p>
+            </div>
+            <div id="obez_weight" class="alert alert-warning d-none" role="alert">
+                <h4 class="alert-heading"> İdeal kilonun çok üstündesiniz(obez) <i class="fa-solid fa-circle-exclamation"></i></h4>
+                <p>Ideal kilonun çok üstündeyken obezite riski taşıyorsunuz. Obezite başta kalp sorunları olmak üzere çeşitli sağlık sorunlarına sebep olur. Lütfen profesyonel birilerinden yardım alın. Sağlıklı bir gelecek için önemli adımlar atabilirsiniz. Düzenli egzersiz yapın, dengeli beslenin, porsiyonları kontrol edin ve su tüketimine dikkat edin. Sağlıklı yaşam için küçük adımlar büyük farklar yaratabilir.</p>
+                <hr>
+                <p class="mb-0">Bir profesyonale danışmak ve randevu almak için lütfen <a href="https://mhrs.gov.tr/vatandas/#/">tıklayınız.</a></p>
+            </div>
+            <div id="morbid_weight" class="alert alert-danger d-none" role="alert">
+                <h4 class="alert-heading"> İdeal kilonun aşırı üstündesiniz (morbid obez) <i class="fa-solid fa-triangle-exclamation"></i></h4>
+                <p> ideal kilonun aşırı üstündeyken sağlığınızı iyileştirmek ve kilo vermek istiyorsanız, bir profesyonelden destek almak önemlidir.Öncelikle, bir doktor veya diyetisyenle görüşerek mevcut sağlık durumunuzu ve kilo verme hedeflerinizi paylaşın. Uzman, size uygun bir plan oluşturmanıza yardımcı olacaktır.Unutmayın, kilo verme süreci herkes için farklıdır ve zaman alabilir. Profesyonel bir sağlık uzmanı size en uygun planı oluşturarak süreci destekleyecektir.</p>
+                <hr>
+                <p class="mb-0">Bir profesyonale danışmak ve randevu almak için lütfen <a href="https://mhrs.gov.tr/vatandas/#/">tıklayınız.</a></p>
+            </div>
+            <div id="low_weight" class="alert alert-dark d-none" role="alert">
+                <h4 class="alert-heading"> İdeal kilonuzun altındasınız!</h4>
+                <p>Sağlığınızı destekleyerek ideal kilonuza çıkın. Dengeli beslenme, düzenli egzersiz ve stres yönetimi önemlidir. Sağlık kontrollerinizi düzenli olarak yaptırın.</p>
+                <hr>
+                <p class="mb-0">Bir profesyonale danışmak ve randevu almak için lütfen <a href="https://mhrs.gov.tr/vatandas/#/">tıklayınız.</a></p>
+            </div>
+        </div>
+    </div>
+  </main>
+  <div class="container">
+
+      <p id="parag_vki" class="bg-primary text-center p-2 text-white d-none">VKI Değeriniz: <span id="vki_value" >24.5</span></p>
+      <hr>
+      <table  class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Boy</th>
+        <th scope="col">Kilo</th>
+        <th scope="col">İsim</th>
+        <th scope="col">Vki</th>
+        </tr>
+    </thead>
+        <tbody id="table_body">
+        <!--Liste elemanları-->
+        </tbody>
+    </table>
+  </div>
+  <footer>
+
+  </footer>
+  <script src="script.js"></script>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
